@@ -1,0 +1,123 @@
+package model.bean;
+
+/**
+ *
+ * @author Camila <Camila.Serrao>
+ */
+
+//esse tipo de classe que representa uma entidade é comumente chamada de "bean"
+//no lugar de Categoria deve-se criar as classes apresentadas no Banco de dados com seus atributos. 
+public class inscricao {
+    private int Nota;
+    private String Nome;
+    private String Data;
+    private String Hora;
+    private String Matricula;
+    private String Curso;
+    private String Modalidade;
+    private String Turno;
+    private String TelefoneAluno;
+    private String TelefoneProfessor;       
+    
+    //construtor com descrição
+    public inscricao(int Nota, String Nome, String Data, String Hora, String Matricula, String Curso, String Modalidade, String Turno, String TelefoneAluno, String TelefoneProfessor) {
+        this.Nota = Nota;
+        this.Nome = Nome;
+        this.Data = Data;
+        this.Hora = Hora;
+        this.Matricula = Matricula;
+        this.Curso = Curso;
+        this.Modalidade = Modalidade;
+        this.Turno = Turno;
+        this.TelefoneAluno = TelefoneAluno;
+        this.TelefoneProfessor = TelefoneProfessor;
+    }
+
+    //construtor vazio
+    public inscricao() {
+    }
+
+    //getters e setters
+
+    public String getCurso() {
+        return Curso;
+    }
+
+    public void setCurso(String Curso) {
+        this.Curso = Curso;
+    }
+
+    public String getData() {
+        return Data;
+    }
+
+    public void setData(String Data) {
+        this.Data = Data;
+    }
+
+    public String getHora() {
+        return Hora;
+    }
+
+    public void setHora(String Hora) {
+        this.Hora = Hora;
+    }
+
+    public String getMatricula() {
+        return Matricula;
+    }
+
+    public void setMatricula(String Matricula) {
+        this.Matricula = Matricula;
+    }
+
+    public String getModalidade() {
+        return Modalidade;
+    }
+
+    public void setModalidade(String Modalidade) {
+        this.Modalidade = Modalidade;
+    }
+
+    public String getNome() {
+        return Nome;
+    }
+
+    public void setNome(String Nome) {
+        this.Nome = Nome;
+    }
+
+    public int getNota() {
+        return Nota;
+    }
+
+    public void setNota(int Nota) {
+        this.Nota = Nota;
+    }
+
+    public String getTelefoneAluno() {
+        return TelefoneAluno;
+    }
+
+    public void setTelefoneAluno(String TelefoneAluno) {
+        this.TelefoneAluno = TelefoneAluno;
+    }
+
+    public String getTelefoneProfessor() {
+        return TelefoneProfessor;
+    }
+
+    public void setTelefoneProfessor(String TelefoneProfessor) {
+        this.TelefoneProfessor = TelefoneProfessor;
+    }
+
+    public String getTurno() {
+        return Turno;
+    }
+
+    public void setTurno(String Turno) {
+        this.Turno = Turno;
+    }
+   
+    
+}
