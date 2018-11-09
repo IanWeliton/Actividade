@@ -1,0 +1,107 @@
+package model.DataAccessObject;
+
+import Conexao.ConexaoComMySQL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import model.bean.inscricao;
+
+/**
+ *
+ * @author Camila <Camila.Serrao>
+ */
+
+//classe Data Acess Object. Criar uma classe DOA para cada classe bean.
+//Exemplo com classe Categoria.
+
+public class InscricaoInsert {
+    private Connection conexao=null;
+
+    public InscricaoInsert() {
+    conexao = ConexaoComMySQL.getConexaoMySQL();
+    }
+    
+    //inserir
+    public boolean insert(inscricao inscricao){ 
+        String sql = "INSERT INTO inscricao (Nome, Nota) VALUES (?,?)";
+        PreparedStatement statement = null;
+        try{
+        statement = conexao.prepareStatement(sql);
+        statement.setString(1, inscricao.getNome());
+        
+        statement.setInt(2, inscricao.getNota());
+        
+        statement.executeUpdate();
+        return true;
+    }catch (SQLException e){
+            System.out.println("erro: "+e);
+            return false;
+    }finally{
+            //fechar conexao
+            ConexaoComMySQL.FecharConexao();
+        }
+    }
+    
+    //SELECT
+    public List<inscricao> select(){ 
+         String sql = "SELECT * FROM categoria";
+         PreparedStatement statement = null;
+         ResultSet resultset = null;
+         List<inscricao> categorias = new ArrayList<>();
+         try{
+             statement = conexao.prepareStatement(sql);
+             resultset = statement.executeQuery();
+             while(resultset.next()){
+                inscricao categoria = new inscricao();
+                 inscricao.setNome(resultset.getString("descricao"));
+                 inscricao.add(Inscricao);
+             }
+         }catch(SQLException e ){
+             System.out.println("erro "+e);
+         }
+         finally{
+             ConexaoComMySQL.FecharConexao();
+         }
+         return categorias;
+    }
+    
+    //UPDATE
+    public boolean update (inscricao inscricao){ 
+        String sql = "UPDATE categoria SET descricao = ? WHERE id= ?";
+        PreparedStatement statement = null;
+        try{
+        statement = conexao.prepareStatement(sql);
+        statement.setString(1, inscricao.getDescricao());
+        statement.setInt(2, inscricao.getId());
+        statement.executeUpdate();
+        return true;
+    }catch (SQLException e){
+            System.out.println("erro: "+e);
+            return false;
+    }finally{
+            //fechar conexao
+            ConexaoComMySQL.FecharConexao();
+        }
+    }
+    
+    //DELETE
+    public boolean delete (inscricao inscricao){
+        String sql = "DELETE FROM categoria WHERE id = ?";
+        PreparedStatement statement = null;
+        try{
+        statement = conexao.prepareStatement(sql);
+        statement.setInt(1, inscricao.getId());
+        statement.executeUpdate();
+        return true;
+    }catch (SQLException e){
+            System.out.println("erro: "+e);
+            return false;
+    }finally{
+            //fechar conexao
+            ConexaoComMySQL.FecharConexao();
+        }
+    }
+}
