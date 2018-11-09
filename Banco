@@ -1,0 +1,20 @@
+create database Teste;
+use Teste; 
+create table inscricao(CPF varchar(11) not null unique,Rg int not null unique);
+ALTER TABLE `teste`.`inscricao` 
+ADD COLUMN `Nome` VARCHAR(225) NOT NULL AFTER `Rg`,
+ADD COLUMN `Nota` INT NOT NULL AFTER `Nome`,
+ADD COLUMN `Data` DATE NOT NULL AFTER `Nota`,
+ADD COLUMN `Hora` DATETIME NOT NULL AFTER `Data`,
+ADD COLUMN `Matricula` VARCHAR(45) NOT NULL AFTER `Hora`,
+ADD COLUMN `Curso` VARCHAR(45) NOT NULL AFTER `Matricula`,
+ADD COLUMN `Modalidade` VARCHAR(45) NOT NULL AFTER `Curso`,
+ADD COLUMN `Turno` VARCHAR(45) NOT NULL AFTER `Modalidade`,
+ADD COLUMN `Telefone Aluno` VARCHAR(45) NOT NULL AFTER `Turno`,
+ADD COLUMN `Telefone Professor` VARCHAR(45) NOT NULL AFTER `Telefone Aluno`,
+ADD UNIQUE INDEX `Matricula_UNIQUE` (`Matricula` ASC);
+
+create table Monitor(DT_Inicio date not null,DT_Fim date not null);
+create table Projeto(DT_Inicio date not null,DT_Fim date not null);
+create table Edital(DT_Inicio date not null,DT_Fim date not null, DT_Fim date not null,DT_Recurso date not null);
+create table Avaliacao(DT date not null, Local_Prova varchar(225), nota int, Situacao varchar(255),foreign key(Aluno) references Teste(Aluno),foreign key(Professor) references Teste(Professor),foreign key(Edital_Projeto) references Teste(Edital_Projeto));
