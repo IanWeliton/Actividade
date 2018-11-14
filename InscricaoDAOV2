@@ -1,0 +1,163 @@
+package bean;
+
+/**
+ *
+ * @author Camila <Camila.Serrao>
+ */
+
+//esse tipo de classe que representa uma entidade é comumente chamada de "bean"
+//no lugar de Categoria deve-se criar as classes apresentadas no Banco de dados com seus atributos. 
+public class inscricao {
+    private int id_inscricao;
+    private String cpf;
+    private String rg;
+    private String nome;
+    private int nota;
+    private String Dt_hora;
+    private String matricula;
+    private String email;
+    private String curso;
+    private String modalidade;
+    private String turno;
+    private String telefoneAluno;
+    private String telefone_resp;       
+    private int id_edital_projeto;
+    //construtor com descrição
+
+    public inscricao(int id_inscricao, String cpf, String rg, String nome, int nota, String Dt_hora, String matricula, String email, String curso, String modalidade, String turno, String telefoneAluno, String telefone_resp, int id_edital_projeto) {
+        this.id_inscricao = id_inscricao;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.nome = nome;
+        this.nota = nota;
+        this.Dt_hora = Dt_hora;
+        this.matricula = matricula;
+        this.email = email;
+        this.curso = curso;
+        this.modalidade = modalidade;
+        this.turno = turno;
+        this.telefoneAluno = telefoneAluno;
+        this.telefone_resp = telefone_resp;
+        this.id_edital_projeto = id_edital_projeto;
+    }
+
+
+    //construtor vazio
+    public inscricao() {
+    }
+
+    //getters e setters
+
+    public int getId_inscricao() {
+        return id_inscricao;
+    }
+
+    public void setId_inscricao(int id_inscricao) {
+        this.id_inscricao = id_inscricao;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getRg() {
+        return rg;
+    }
+
+    public void setRg(String rg) {
+        this.rg = rg;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public int getNota() {
+        return nota;
+    }
+
+    public void setNota(int nota) {
+        this.nota = nota;
+    }
+
+    public String getDt_hora() {
+        return Dt_hora;
+    }
+
+    public void setDt_hora(String Dt_hora) {
+        this.Dt_hora = Dt_hora;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCurso() {
+        return curso;
+    }
+
+    public void setCurso(String curso) {
+        this.curso = curso;
+    }
+
+    public String getModalidade() {
+        return modalidade;
+    }
+
+    public void setModalidade(String modalidade) {
+        this.modalidade = modalidade;
+    }
+
+    public String getTurno() {
+        return turno;
+    }
+
+    public void setTurno(String turno) {
+        this.turno = turno;
+    }
+
+    public String getTelefoneAluno() {
+        return telefoneAluno;
+    }
+
+    public void setTelefoneAluno(String telefoneAluno) {
+        this.telefoneAluno = telefoneAluno;
+    }
+
+    public String getTelefone_resp() {
+        return telefone_resp;
+    }
+
+    public void setTelefone_resp(String telefone_resp) {
+        this.telefone_resp = telefone_resp;
+    }
+
+    public int getId_edital_projeto() {
+        return id_edital_projeto;
+    }
+
+    public void setId_edital_projeto(int id_edital_projeto) {
+        this.id_edital_projeto = id_edital_projeto;
+    }
+         
+}
