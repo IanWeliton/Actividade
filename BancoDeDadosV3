@@ -1,0 +1,164 @@
+create database Promon
+default character set = utf8
+default collate utf8_general_ci;
+use Promon;
+
+create table edital_projeto (
+id_edital_projeto int not null auto_increment primary key
+) default charset = utf8;
+
+create table inscricao (
+id_inscricao int not null auto_increment,
+cpf varchar (11) not null unique,
+rg varchar (7) not null unique,
+nome varchar (70) not null,
+nota int (3) not null,
+dt_hora datetime not null, 
+matricula varchar (15) unique not null,
+email varchar (50) not null unique,
+curso varchar (30) not null,
+modalidade varchar (30) not null,
+turno varchar (15) not null,
+telefone_aluno varchar (30) not null,
+telefone_resp varchar (30) not null,
+id_edital_projeto int,
+foreign key (id_edital_projeto) references edital_projeto(id_edital_projeto),
+primary key (id_inscricao)
+) default charset = utf8;
+
+create table orientador (
+id_orientador int not null auto_increment,
+primary key (id_orientador)
+) default charset = utf8;
+
+create table projeto (
+id_projeto int not null auto_increment,
+dt_inicio date not null,
+dt_fim date not null,
+id_orientador int,
+foreign key (id_orientador) references orientador(id_orientador),
+primary key (id_projeto)
+) default charset = utf8;
+
+alter table projeto  add  
+id_monitor int;
+
+create table monitor (
+id_monitor int not null auto_increment,
+dt_inicio date not null,
+dt_fim date not null,
+matricula int,
+id_projeto int,
+foreign key (matricula) references aluno(matricula),
+foreign key (id_projeto) references projeto(id_projeto),
+primary key (id_monitor)
+) default charset = utf8;
+
+
+create table projeto (
+id_projeto int not null auto_increment,
+dt_inicio date not null,
+dt_fim date not null,
+id_orientador int,
+foreign key (id_orientador) references orientador(id_orientador),
+primary key (id_projeto)
+) default charset = utf8;
+
+
+create table aluno (
+matricula int not null auto_increment,
+primary key (matricula)
+) default charset = utf8;
+
+create table avaliacao (
+id_avaliacao int not null auto_increment,
+dt_hora datetime not null,
+local_avaliacao varchar (225),
+nota int (3) not null,
+situacao varchar(255),
+matricula int,
+id_orientador int,
+id_edital_projeto int,
+foreign key (matricula) references aluno(matricula),
+foreign key (id_orientador) references orientador(id_orientador),
+foreign key (id_edital_projeto) references edital_projeto(id_edital_projeto),
+primary key (id_avaliacao)
+) default charset = utf8;
+
+
+create table edital (
+id_edital int not null auto_increment,
+dt_inicio date not null,
+dt_fim date not null,
+dt_recurso date not null,
+dt_publicacao date not null,
+primary key (id_edital)
+) default charset = utf8;
+
+
+create table projeto_monitor (
+id_projeto_monitor int not null auto_increment,
+primary key (id_projeto_monitor)
+) default charset = utf8;
+
+
+create table monitoria (
+id_monitoria int not null auto_increment,
+primary key (id_monitoria)
+) default charset = utf8;
+
+
+create table relatorio (
+id_relatorio int not null auto_increment,
+primary key (id_relatorio)
+) default charset = utf8;
+
+
+create table relatorio_monitor (
+id_relatorio_monitor int not null auto_increment,
+primary key (id_relatorio_monitor)
+) default charset = utf8;
+
+
+create table relatorio_orientador (
+id_relatorio_orientador int not null auto_increment,
+primary key (id_relatorio_orientador)
+) default charset = utf8;
+
+
+create table avaliacao_orientador (
+id_avaliacao_orientador int not null auto_increment,
+primary key (id_avaliacao_orientador)
+) default charset = utf8;
+
+
+create table avaliacao_monitoria (
+id_avaliacao_monitoria int not null auto_increment,
+primary key (id_avaliacao_monitoria)
+) default charset = utf8;
+
+
+create table projeto_orientador (
+id_projeto_orientador int not null auto_increment,
+primary key (id_projeto_orientador)
+) default charset = utf8;
+
+
+create table cadastro_orientador (
+id_cadastro_orientador int not null auto_increment,
+nome varchar (70) not null,
+cpf varchar (11) unique not null,
+rg varchar (7) unique not null,
+materia varchar (30) not null,
+dt_nascimento date,
+primary key (id_cadastro_orientador)
+) default charset = utf8;
+
+
+create table disciplina (
+id_disciplina int not null auto_increment,
+nome varchar (70) not null,
+professor varchar (70) not null,
+monitores varchar (255) not null,
+primary key (id_disciplina)
+) default charset = utf8;
