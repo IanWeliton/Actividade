@@ -1,0 +1,52 @@
+package DAO;
+
+import Conexao.ConexaoComMySQL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import beans.Avaliacao;
+
+
+//classe Data Acess Object. Criar uma classe DOA para cada classe bean.
+//Exemplo com classe Categoria.
+
+
+
+public class AvaliacaoDAO {
+    private Connection conexao=null;
+
+    public AvaliacaoDAO () {
+    conexao = ConexaoComMySQL.getConexaoMySQL();
+    }
+    
+    //inserir
+    public boolean insert(Avaliacao Avaliacao){ 
+        String sql = "INSERT INTO avaliacao ( id_avaliacao, dt_hora,  local_avaliacao, nota, situacao, matricula,  id_orientador, id_edital_projeto) VALUES (?,?,?,?,?,?)";
+        PreparedStatement statement = null;
+        try{
+        statement = conexao.prepareStatement(sql);
+        
+        statement.setInt(1,Avaliacao.getId_avaliacao()); 
+        statement.setString(2, Avaliacao.getDt_hora());
+        statement.setString(3, Avaliacao.getLocal_avaliacao());
+        statement.setInt(4, Avaliacao.getNota()); 
+        statement.setString(5, Avaliacao.getSituacao());
+        statement.setString(6,Avaliacao.getMatricula());
+        statement.setInt(7, Avaliacao.getId_orientador());
+        statement.setInt(8, Avaliacao.getId_edital_projeto());
+        
+        statement.executeUpdate();
+        return true;
+    }catch (SQLException e){
+            System.out.println("erro: "+e);
+            return false;
+    }finally{
+            //fechar conexao
+            ConexaoComMySQL.FecharConexao();
+        }
+    }
+
+}
