@@ -1,0 +1,20 @@
+package promon;
+
+import Conexao.ConexaoComMySQL;
+import beans.inscricao;
+public class Promon {
+    
+    public static void main(String[] args) {
+    ConexaoComMySQL.getConexaoMySQL();
+    System.out.println(ConexaoComMySQL.statusConection());
+    System.out.println("");
+    ConexaoComMySQL.getConexaoMySQL();
+     System.out.println("");
+        
+    
+     inscricao Inscric= new inscricao();
+     Inscric.RealizarInscrição();
+
+    }
+    
+}
