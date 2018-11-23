@@ -1,0 +1,55 @@
+package DAO;
+
+import Conexao.ConexaoComMySQL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import beans.Orientador;
+
+
+//classe Data Acess Object. Criar uma classe DOA para cada classe bean.
+//Exemplo com classe Categoria.
+
+
+
+public class OrientadorDAO {
+    
+
+
+    private Connection conexao=null;
+
+    public OrientadorDAO () {
+    conexao = ConexaoComMySQL.getConexaoMySQL();
+    }
+    
+    //inserir
+    public boolean insert(Orientador Orientador){ 
+        String sql = "INSERT INTO orientador (  id_cadastro_orientador,  nome,  cpf,  rg,  materia,  dt_nascimento) VALUES (?,?,?,?,?,?)";
+        PreparedStatement statement = null;
+        try{
+        statement = conexao.prepareStatement(sql);
+        
+        statement.setInt(1,Orientador.getId_cadastro_orientador()); 
+        statement.setString(2,Orientador.getNome());
+        statement.setString(3,Orientador.getCpf());
+        statement.setString(4, Orientador.getRg()); 
+        statement.setString(5,Orientador.getMateria());
+        statement.setString(6, Orientador.getDt_nascimeno());
+        
+        
+        statement.executeUpdate();
+        return true;
+    }catch (SQLException e){
+            System.out.println("erro: "+e);
+            return false;
+    }finally{
+            //fechar conexao
+            ConexaoComMySQL.FecharConexao();
+        }
+    }
+
+
+}
