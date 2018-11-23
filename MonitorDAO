@@ -1,0 +1,49 @@
+package DAO;
+
+import Conexao.ConexaoComMySQL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import beans.Monitor;
+
+
+//classe Data Acess Object. Criar uma classe DOA para cada classe bean.
+//Exemplo com classe Categoria.
+
+
+public class MonitorDAO {
+    private Connection conexao=null;
+
+    public MonitorDAO () {
+    conexao = ConexaoComMySQL.getConexaoMySQL();
+    }
+    
+    //inserir
+    public boolean insert(Monitor Monitor){ 
+        String sql = "INSERT INTO monitor (id_monitor,dt_inicio, dt_fim ,matricula, id_projeto) VALUES (?,?,?,?,?)";
+        PreparedStatement statement = null;
+        try{
+        statement = conexao.prepareStatement(sql);
+        
+        statement.setInt(1, Monitor.getId_monitor()); 
+        statement.setString(2,  Monitor.getDt_inicio());
+        statement.setString(3,  Monitor.getDt_fim());
+        statement.setInt(4, Monitor.getMatricula()); 
+        statement.setInt(5, Monitor.getId_projeto());
+        
+        statement.executeUpdate();
+        return true;
+    }catch (SQLException e){
+            System.out.println("erro: "+e);
+            return false;
+    }finally{
+            //fechar conexao
+            ConexaoComMySQL.FecharConexao();
+        }
+    }
+
+
+}
